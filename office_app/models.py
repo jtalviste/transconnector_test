@@ -13,6 +13,7 @@ class Office(models.Model):
 class Person(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    office = models.ForeignKey(Office, null=True, default=None, on_delete=models.SET_NULL)
 
 class WorkHistory(models.Model):
     office = models.ForeignKey(Office, on_delete=models.CASCADE)

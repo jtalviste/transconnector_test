@@ -1,0 +1,122 @@
+[
+  {
+    "model": "office_app.office",
+    "pk": 1,
+    "fields": {
+      "name": "Headquarters",
+      "address": "123 Main Street",
+      "city": "Anytown",
+      "country": "USA",
+      "latitude": 37.775,
+      "longitude": -122.4188
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 2,
+    "fields": {
+      "name": "New York Office",
+      "address": "456 Wall Street",
+      "city": "New York City",
+      "country": "USA",
+      "latitude": 40.7127,
+      "longitude": -74.006
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 3,
+    "fields": {
+      "name": "London Office",
+      "address": "789 Oxford Street",
+      "city": "London",
+      "country": "UK",
+      "latitude": 51.5072,
+      "longitude": -0.1275
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 4,
+    "fields": {
+      "name": "Paris Office",
+      "address": "1011 Champs-Élysées",
+      "city": "Paris",
+      "country": "France",
+      "latitude": 48.8566,
+      "longitude": 2.3508
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 5,
+    "fields": {
+      "name": "Tokyo Office",
+      "address": "1213 Ginza",
+      "city": "Tokyo",
+      "country": "Japan",
+      "latitude": 35.6897,
+      "longitude": 139.6917
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 6,
+    "fields": {
+      "name": "Sydney Office",
+      "address": "1415 George Street",
+      "city": "Sydney",
+      "country": "Australia",
+      "latitude": -33.8679,
+      "longitude": 151.1939
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 7,
+    "fields": {
+      "name": "Amsterdam Office",
+      "address": "1617 Dam Square",
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "latitude": 52.3719,
+      "longitude": 4.893
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 8,
+    "fields": {
+      "name": "Berlin Office",
+      "address": "1819 Unter den Linden",
+      "city": "Berlin",
+      "country": "Germany",
+      "latitude": 52.5213,
+      "longitude": 13.4105
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 9,
+    "fields": {
+      "name": "Zurich Office",
+      "address": "2021 Bahnhofstrasse",
+      "city": "Zurich",
+      "country": "Switzerland",
+      "latitude": 47.3769,
+      "longitude": 8.5373
+    }
+  },
+  {
+    "model": "office_app.office",
+    "pk": 10,
+    "fields": {
+      "name": "Hong Kong Office",
+      "address": "2223 Nathan Road",
+      "city": "Kowloon",
+      "country": "Hong Kong",
+      "latitude": 22.2777,
+      "longitude": 114.1778
+    }
+  }
+]

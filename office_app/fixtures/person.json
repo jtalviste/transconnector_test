@@ -1,0 +1,84 @@
+[
+    {
+      "model": "office_app.person",
+      "pk": 1,
+      "fields": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "office_id": 1
+      }
+    },
+    {
+      "model": "office_app.person",
+      "pk": 2,
+      "fields": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "office_id": 2
+      }
+    },
+    {
+      "model": "office_app.person",
+      "pk": 3,
+      "fields": {
+        "first_name": "Peter",
+        "last_name": "Jones",
+        "office_id": 2
+      }
+    },
+    {
+      "model": "office_app.person",
+      "pk": 4,
+      "fields": {
+        "first_name": "David",
+        "last_name": "Lee",
+        "office_id": 3
+      }
+    },
+    {
+      "model": "office_app.person",
+      "pk": 5,
+      "fields": {
+        "first_name": "Mary",
+        "last_name": "Brown",
+        "office_id": 3
+      }
+    },
+    {
+      "model": "office_app.person",
+      "pk": 6,
+      "fields": {
+        "first_name": "Michael",
+        "last_name": "Johnson",
+        "office_id": 6
+      }
+    },
+    {
+      "model": "office_app.person",
+      "pk": 7,
+      "fields": {
+        "first_name": "Susan",
+        "last_name": "Williams",
+        "office_id": 7
+      }
+    },
+    {
+      "model": "office_app.person",
+      "pk": 8,
+      "fields": {
+        "first_name": "Akira",
+        "last_name": "Sato",
+        "office_id": 8
+      }
+    },
+    {
+      "model": "office_app.person",
+      "pk": 9,
+      "fields": {
+        "first_name": "Haruka",
+        "last_name": "Suzuki",
+        "office_id": 9
+      }
+    }
+  ]
+  

@@ -1,0 +1,93 @@
+[
+    {
+      "model": "office_app.workhistory",
+      "pk": 1,
+      "fields": {
+        "office": 1,
+        "person": 1,
+        "last_checked": "2023-12-23T12:00:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 2,
+      "fields": {
+        "office": 2,
+        "person": 2,
+        "last_checked": "2023-12-23T12:30:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 3,
+      "fields": {
+        "office": 2,
+        "person": 3,
+        "last_checked": "2023-12-23T13:15:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 4,
+      "fields": {
+        "office": 3,
+        "person": 4,
+        "last_checked": "2023-12-23T14:00:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 5,
+      "fields": {
+        "office": 3,
+        "person": 5,
+        "last_checked": "2023-12-23T14:45:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 6,
+      "fields": {
+        "office": 4,
+        "person": 6,
+        "last_checked": "2023-12-23T15:30:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 7,
+      "fields": {
+        "office": 4,
+        "person": 7,
+        "last_checked": "2023-12-23T16:15:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 8,
+      "fields": {
+        "office": 5,
+        "person": 8,
+        "last_checked": "2023-12-23T17:00:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 9,
+      "fields": {
+        "office": 5,
+        "person": 9,
+        "last_checked": "2023-12-23T17:45:00Z"
+      }
+    },
+    {
+      "model": "office_app.workhistory",
+      "pk": 10,
+      "fields": {
+        "office": 6,
+        "person": 4,
+        "last_checked": "2023-12-23T18:30:00Z"
+      }
+    }
+  ]
+  
