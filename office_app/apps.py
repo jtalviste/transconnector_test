@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TransConnectorAppConfig(AppConfig):
+class OfficeAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'trans_connector_app'
+    name = 'office_app'
