@@ -21,4 +21,6 @@ from office_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('office/employees/', views.OfficeEmployeesView.as_view()),
+    path('office/', views.OfficeView.as_view(), name='office'),
 ]

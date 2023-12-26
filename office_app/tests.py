@@ -1,8 +1,9 @@
+import json
 import os
 from typing import List
-from django.test import TestCase
+from django.test import TestCase, Client
 
-from office_app.apikey import API_KEY_PROP_NAME, getAccessApiKey
+from office_app.apikey import API_KEY_ENV_PROP_NAME, checkAccessApiKey, printApiKeyInstructions
 from office_app.services.meteo import get_current_temperature
 from office_app.services.officeservice import OfficeService
 from office_app.services.personservice import PersonService
@@ -10,9 +11,19 @@ from office_app.services.workhistoryservice import WorkHistoryService
 from .models import Office
 from .models import Person
 from .models import WorkHistory
+from django.core.management import call_command
+from django.utils import timezone
+
+call_command('migrate')
+call_command('loaddata', 'office.json')
+call_command('loaddata', 'person.json')
+call_command('loaddata', 'workhistory.json')
+
+
 
 # office fixture length check
 class OfficeModelTestCase(TestCase):
+    fixtures = ["office"]
 
     def test_office_fixture(self):
         self.assertEqual(len(Office.objects.all()),10)
@@ -32,8 +43,9 @@ class WorkHistoryModelTestCase(TestCase):
 class ApiKeyTestCase(TestCase):
 
     def test_api_key_helper(self):
-        os.environ[API_KEY_PROP_NAME] = 'thisisahardtoguessapikey'
-        self.assertEqual(getAccessApiKey(),'thisisahardtoguessapikey')
+        # printApiKeyInstructions('apikey')
+        os.environ[API_KEY_ENV_PROP_NAME] = "O6GFX73m4tIviuv8YtYcJwGy6awVSsb2QxG7iLjSfU8="
+        self.assertEqual(checkAccessApiKey('apikey'),True)
 
 class OpenMeteoTestCase(TestCase):
 
@@ -75,10 +87,10 @@ class OfficeServiceEmployeesTestCase(TestCase):
         OfficeService.add_employee(headQuarters, newPerson)
         
         personsInOffice = Person.objects.filter(office=headQuarters)
-        officeHistory = WorkHistory.objects.filter(office=headQuarters,person=newPerson)
+        workHistory = WorkHistory.objects.filter(office=headQuarters,person=newPerson)
 
         self.assertEqual(len(personsInOffice),2)
-        self.assertEqual(len(officeHistory),1)
+        self.assertEqual(len(workHistory),1)
 
 class PersonByNameTestCase(TestCase):
 
@@ -109,14 +121,59 @@ class WorkHistoryUpdateTestcase(TestCase):
         history = WorkHistory.objects.filter(person=person)
         self.assertCountEqual(offices, history)
 
+# Controller tests
+os.environ[API_KEY_ENV_PROP_NAME] = "O6GFX73m4tIviuv8YtYcJwGy6awVSsb2QxG7iLjSfU8="
+class GetOfficeTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
 
-print("TODO: # scheduled task to runs every day")
-print("TODO: # scheduled task updates the last_checked field with the date on which the task is running")
-print("TODO: # scheduled task can be run in batches iterated")
+    def test_get_office(self):
+        response = self.client.get('/office/', {'name': 'Headquarters'}, HTTP_API_KEY = 'apikey')
+        self.assertEqual(response.status_code, 200)
+        response_content = str(response.content, encoding='utf8')
+        json_content = json.loads(response_content)
+        self.assertFieldExists(json_content, "address");
+        self.assertFieldExists(json_content, "city");
+        self.assertFieldExists(json_content, "country");
+        self.assertFieldExists(json_content, "id");
+        self.assertFieldExists(json_content, "latitude");
+        self.assertFieldExists(json_content, "longitude");
+        self.assertFieldExists(json_content, "name");
+        self.assertFieldExists(json_content, "temperature");
+    
+    def assertFieldExists(self, jsonObj, fieldName):
+        self.assertIn(fieldName, jsonObj)
+        self.assertIsNotNone(jsonObj[fieldName])
+    
+    
+class GetOfficeEmployeesTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
 
-print("TODO: # Get office info via controller")
-print("TODO: # Get office info via controller, need API key")
-print("TODO: # controller test: Get employees in an office")
+    def test_get_office_employees(self):
+        
+        response = self.client.get('/office/employees/', {'name': 'Headquarters'}, HTTP_API_KEY = 'apikey')
+        self.assertEqual(response.status_code, 200)
+        response_content = str(response.content, encoding='utf8')
+        json_content = json.loads(response_content)
+        print("=========================== employees returns")
+        print(json_content)
+
+
+class OfficeCheckCommandTest(TestCase):
+
+    def test_date_update_job(self):
+        call_command('update_workhistory')
+        workHistory = WorkHistory.objects.get(pk=1)
+
+        # Get today's date
+        today = timezone.localdate()
+
+        # Assert that date updated
+        self.assertEqual(workHistory.last_checked.date(), today)
+
+
+
 print("TODO: # controller test: Get employees by first name")
 print("TODO: # controller test: Get employees by last name")
 print("TODO: # controller test: Get employees by first name and last name")
@@ -124,7 +181,18 @@ print("TODO: # controller test: Get employees returns the office where they work
 print("TODO: # controller test: Add new employee to an office")
 print("TODO: # controller test: Update employee’s offices which they have worked at")
 
-print("TODO: organize files")
 print("TODO: dockerise")
+
+print("TODO: # scheduled task to runs every day")
+print("TODO: # scheduled task updates the last_checked field with the date on which the task is running")
+print("TODO: # scheduled task can be run in batches iterated")
+
+
+print("TODO: organize files")
+print("TODO: postman test")
+print("TODO: check testcases and method names")
+print("TODO: check comments")
+print("TODO: check imports")
+print("TODO: check readme")
 
 

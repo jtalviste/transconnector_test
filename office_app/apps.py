@@ -6,10 +6,4 @@ class OfficeAppConfig(AppConfig):
     name = 'office_app'
 
 
-    def ready(self):
-        # Load fixtures here
-        call_command('migrate')
-        call_command('loaddata', 'office.json')
-        call_command('loaddata', 'person.json')
-        call_command('loaddata', 'workhistory.json')
-
+    

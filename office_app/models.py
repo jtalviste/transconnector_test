@@ -20,3 +20,6 @@ class WorkHistory(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     last_checked = models.DateTimeField()
 
+    class Meta:
+        unique_together = ('office', 'person',)
+
