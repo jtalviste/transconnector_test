@@ -19,14 +19,12 @@ When not set, the API key defaults to "apikey", this must be in the "Apikey" hea
 There is a management command "update_workhistory." If crontab doesn't work (e.g on Windows)
 then it can be called at midnights.
 
-To run the server, do
-run 
+To run the server, run 
 ``` bash
 python manage.py runserver
 ```
 
-To run the tests, do
-run 
+To run the tests, run 
 ``` bash
 python manage.py test
 ```
