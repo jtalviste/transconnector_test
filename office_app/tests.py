@@ -127,7 +127,7 @@ class GetOfficeTestCase(TestCase):
         self.client = Client()
 
     def test_get_office(self):
-        response = self.client.get('/office/', {'name': 'Headquarters'}, HTTP_API_KEY = 'apikey')
+        response = self.client.get('/office/', {'name': 'Headquarters'}, HTTP_APIKEY = 'apikey')
         self.assertEqual(response.status_code, 200)
         response_content = str(response.content, encoding='utf8')
         json_content = json.loads(response_content)
@@ -151,7 +151,7 @@ class GetOfficeEmployeesTestCase(TestCase):
 
     def test_get_office_employees(self):
         
-        response = self.client.get('/office/employees/', {'name': 'Headquarters'}, HTTP_API_KEY = 'apikey')
+        response = self.client.get('/office/employees/', {'name': 'Headquarters'}, HTTP_APIKEY = 'apikey')
         self.assertEqual(response.status_code, 200)
         response_content = str(response.content, encoding='utf8')
         json_content = json.loads(response_content)
@@ -163,7 +163,7 @@ class GetPersonTestCase(TestCase):
 
     def test_get_person(self):
         
-        response = self.client.get('/person/', {'last_name': 'Doe'}, HTTP_API_KEY = 'apikey')
+        response = self.client.get('/person/', {'last_name': 'Doe'}, HTTP_APIKEY = 'apikey')
         self.assertEqual(response.status_code, 200)
         response_content = str(response.content, encoding='utf8')
         json_content = json.loads(response_content)
@@ -175,7 +175,7 @@ class GetPersonContentTestCase(TestCase):
 
     def test_get_person_content(self):
         
-        response = self.client.get('/person/', {'first_name': 'John'}, HTTP_API_KEY = 'apikey')
+        response = self.client.get('/person/', {'first_name': 'John'}, HTTP_APIKEY = 'apikey')
         self.assertEqual(response.status_code, 200)
         response_content = str(response.content, encoding='utf8')
         json_content = json.loads(response_content)
@@ -191,7 +191,7 @@ class AddEmployeeViewTest(TestCase):
             'office_id': 1,
             'first_name': 'Joey',
             'last_name': 'Dorne'
-        }, HTTP_API_KEY = 'apikey')
+        }, HTTP_APIKEY = 'apikey')
         self.assertEqual(response.status_code, 200)
 
 class UpdateWorkHistoryViewTest(TestCase):
@@ -202,7 +202,7 @@ class UpdateWorkHistoryViewTest(TestCase):
         response = self.client.put("/update-work-history/", json.dumps({
             'person_id': 1,
             'office_ids': [1, 2]
-        }), content_type='application/json', HTTP_API_KEY = 'apikey')
+        }), content_type='application/json', HTTP_APIKEY = 'apikey')
         self.assertEqual(response.status_code, 200)
 
 class DateUpdateCommandTest(TestCase):
@@ -218,9 +218,5 @@ class DateUpdateCommandTest(TestCase):
         self.assertEqual(workHistory.last_checked.date(), today)
 
 
-
-print("TODO: # scheduled task to runs every day")
-print("TODO: organize files")
-print("TODO: postman test")
 
 

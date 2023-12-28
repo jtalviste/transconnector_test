@@ -14,7 +14,7 @@ python manage.py crontab add
 
 There is a utility in office_app\apikey.py.
 It prints out how to set up the API key environment variable.
-When not set, the API key defaults to "apikey", this must be in the API_KEY header.
+When not set, the API key defaults to "apikey", this must be in the "Apikey" header.
 
 There is a management command "update_workhistory." If crontab doesn't work (e.g on Windows)
 then it can be called at midnights.

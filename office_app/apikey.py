@@ -10,8 +10,8 @@ if os.getenv(API_KEY_ENV_PROP_NAME) is None:
 def printApiKeyInstructions(apiKey):
     print("Env var should be set "+API_KEY_ENV_PROP_NAME+"="+getApiKeyHash(apiKey))
 
-def checkAccessApiKey(apikey):
-    return os.getenv(API_KEY_ENV_PROP_NAME) and os.getenv(API_KEY_ENV_PROP_NAME) == getApiKeyHash(apikey)
+def checkAccessApiKey(apiKey):
+    return os.getenv(API_KEY_ENV_PROP_NAME) == getApiKeyHash(apiKey)
 
 def getApiKeyHash(apiKey):
     if apiKey is None:

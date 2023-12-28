@@ -7,7 +7,7 @@ class ApiKeyCheckerMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        api_key = request.headers.get('API_KEY')
+        api_key = request.headers.get('Apikey')
         if not checkAccessApiKey(api_key):
             return JsonResponse({'error': 'Invalid API_KEY in headers'}, status=500)
 
