@@ -2,8 +2,7 @@ import json
 import os
 from typing import List
 from django.test import TestCase, Client
-
-from office_app.apikey import API_KEY_ENV_PROP_NAME, checkAccessApiKey, printApiKeyInstructions
+from office_app.apikey import API_KEY_ENV_PROP_NAME, checkAccessApiKey
 from office_app.services.meteo import get_current_temperature
 from office_app.services.officeservice import OfficeService
 from office_app.services.personservice import PersonService
@@ -156,11 +155,57 @@ class GetOfficeEmployeesTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         response_content = str(response.content, encoding='utf8')
         json_content = json.loads(response_content)
-        print("=========================== employees returns")
-        print(json_content)
+        self.assertEqual(len(json_content),1)
 
+class GetPersonTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
 
-class OfficeCheckCommandTest(TestCase):
+    def test_get_person(self):
+        
+        response = self.client.get('/person/', {'last_name': 'Doe'}, HTTP_API_KEY = 'apikey')
+        self.assertEqual(response.status_code, 200)
+        response_content = str(response.content, encoding='utf8')
+        json_content = json.loads(response_content)
+        self.assertEqual(len(json_content),2)
+
+class GetPersonContentTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_get_person_content(self):
+        
+        response = self.client.get('/person/', {'first_name': 'John'}, HTTP_API_KEY = 'apikey')
+        self.assertEqual(response.status_code, 200)
+        response_content = str(response.content, encoding='utf8')
+        json_content = json.loads(response_content)
+        self.assertEqual(len(json_content),1)
+        self.assertIsNotNone(json_content[0]["history"][0]["office"])
+
+class AddEmployeeViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_add_employee(self):
+        response = self.client.post("/add-employee/", {
+            'office_id': 1,
+            'first_name': 'Joey',
+            'last_name': 'Dorne'
+        }, HTTP_API_KEY = 'apikey')
+        self.assertEqual(response.status_code, 200)
+
+class UpdateWorkHistoryViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_update_work_history(self):
+        response = self.client.put("/update-work-history/", json.dumps({
+            'person_id': 1,
+            'office_ids': [1, 2]
+        }), content_type='application/json', HTTP_API_KEY = 'apikey')
+        self.assertEqual(response.status_code, 200)
+
+class DateUpdateCommandTest(TestCase):
 
     def test_date_update_job(self):
         call_command('update_workhistory')
@@ -174,25 +219,8 @@ class OfficeCheckCommandTest(TestCase):
 
 
 
-print("TODO: # controller test: Get employees by first name")
-print("TODO: # controller test: Get employees by last name")
-print("TODO: # controller test: Get employees by first name and last name")
-print("TODO: # controller test: Get employees returns the office where they work and places where they have worked previously")
-print("TODO: # controller test: Add new employee to an office")
-print("TODO: # controller test: Update employee’s offices which they have worked at")
-
-print("TODO: dockerise")
-
 print("TODO: # scheduled task to runs every day")
-print("TODO: # scheduled task updates the last_checked field with the date on which the task is running")
-print("TODO: # scheduled task can be run in batches iterated")
-
-
 print("TODO: organize files")
 print("TODO: postman test")
-print("TODO: check testcases and method names")
-print("TODO: check comments")
-print("TODO: check imports")
-print("TODO: check readme")
 
 

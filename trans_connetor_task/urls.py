@@ -21,6 +21,9 @@ from office_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('person/', views.PersonView.as_view()),
     path('office/employees/', views.OfficeEmployeesView.as_view()),
     path('office/', views.OfficeView.as_view(), name='office'),
+    path('add-employee/', views.AddEmployeeView.as_view()),
+    path('update-work-history/', views.UpdateWorkHistoryView.as_view())
 ]

@@ -9,18 +9,26 @@ python manage.py migrate
 python manage.py loaddata office.json
 python manage.py loaddata person.json
 python manage.py loaddata workhistory.json
+python manage.py crontab add
 ```
-
-Env var should be set TRANS_CONNECTOR_API_KEY_HASH=O6GFX73m4tIviuv8YtYcJwGy6awVSsb2QxG7iLjSfU8=
-in case you want the API key to be just "apikey"
 
 There is a utility in office_app\apikey.py.
 It prints out how to set up the API key environment variable.
+When not set, the API key defaults to "apikey", this must be in the API_KEY header.
+
+There is a management command "update_workhistory." If crontab doesn't work (e.g on Windows)
+then it can be called at midnights.
 
 To run the server, do
 run 
 ``` bash
 python manage.py runserver
+```
+
+To run the tests, do
+run 
+``` bash
+python manage.py test
 ```
 
 

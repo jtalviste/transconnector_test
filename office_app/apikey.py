@@ -4,6 +4,9 @@ import base64
 
 API_KEY_ENV_PROP_NAME = "TRANS_CONNECTOR_API_KEY_HASH"
 
+if os.getenv(API_KEY_ENV_PROP_NAME) is None:
+    os.environ[API_KEY_ENV_PROP_NAME] = "O6GFX73m4tIviuv8YtYcJwGy6awVSsb2QxG7iLjSfU8="
+
 def printApiKeyInstructions(apiKey):
     print("Env var should be set "+API_KEY_ENV_PROP_NAME+"="+getApiKeyHash(apiKey))
 

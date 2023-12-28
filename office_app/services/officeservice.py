@@ -11,11 +11,9 @@ class OfficeService:
         # Fetch the office model by name
         office = Office.objects.get(name=office_name)
 
-        # Use the imported method to get current temperature
         current_temperature = get_current_temperature(office.latitude, office.longitude)
 
         if current_temperature is not None:
-            # Add the current_temperature attribute to the Office model
             office.current_temperature = current_temperature
             return office
         else:
@@ -23,7 +21,6 @@ class OfficeService:
         
     @staticmethod
     def get_office_employees(office_name:str) -> List[Person] :
-        # Fetch the office model by name
         return list(Person.objects.filter(office__name=office_name) or [])
     
     @staticmethod
